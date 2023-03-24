@@ -79,6 +79,8 @@ type FlatConfig struct {
 	WinRMInsecure             *bool                              `mapstructure:"winrm_insecure" cty:"winrm_insecure" hcl:"winrm_insecure"`
 	WinRMUseNTLM              *bool                              `mapstructure:"winrm_use_ntlm" cty:"winrm_use_ntlm" hcl:"winrm_use_ntlm"`
 	ProxmoxURLRaw             *string                            `mapstructure:"proxmox_url" cty:"proxmox_url" hcl:"proxmox_url"`
+	ProxmoxHttpHeaders        *string                            `mapstructure:"proxmox_http_headers" cty:"proxmox_http_headers" hcl:"proxmox_http_headers"`
+	ProxmoxProxyServer        *string                            `mapstructure:"proxmox_proxy_server" cty:"proxmox_proxy_server" hcl:"proxmox_proxy_server"`
 	SkipCertValidation        *bool                              `mapstructure:"insecure_skip_tls_verify" cty:"insecure_skip_tls_verify" hcl:"insecure_skip_tls_verify"`
 	Username                  *string                            `mapstructure:"username" cty:"username" hcl:"username"`
 	Password                  *string                            `mapstructure:"password" cty:"password" hcl:"password"`
@@ -200,6 +202,8 @@ func (*FlatConfig) HCL2Spec() map[string]hcldec.Spec {
 		"winrm_insecure":               &hcldec.AttrSpec{Name: "winrm_insecure", Type: cty.Bool, Required: false},
 		"winrm_use_ntlm":               &hcldec.AttrSpec{Name: "winrm_use_ntlm", Type: cty.Bool, Required: false},
 		"proxmox_url":                  &hcldec.AttrSpec{Name: "proxmox_url", Type: cty.String, Required: false},
+		"proxmox_http_headers":         &hcldec.AttrSpec{Name: "proxmox_http_headers", Type: cty.String, Required: false},
+		"proxmox_proxy_server":         &hcldec.AttrSpec{Name: "proxmox_proxy_server", Type: cty.String, Required: false},
 		"insecure_skip_tls_verify":     &hcldec.AttrSpec{Name: "insecure_skip_tls_verify", Type: cty.Bool, Required: false},
 		"username":                     &hcldec.AttrSpec{Name: "username", Type: cty.String, Required: false},
 		"password":                     &hcldec.AttrSpec{Name: "password", Type: cty.String, Required: false},

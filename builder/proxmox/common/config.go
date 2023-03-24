@@ -37,6 +37,8 @@ type Config struct {
 
 	ProxmoxURLRaw      string `mapstructure:"proxmox_url"`
 	proxmoxURL         *url.URL
+	ProxmoxHttpHeaders string        `mapstructure:"proxmox_http_headers"`
+	ProxmoxProxyServer string        `mapstructure:"proxmox_proxy_server"`
 	SkipCertValidation bool          `mapstructure:"insecure_skip_tls_verify"`
 	Username           string        `mapstructure:"username"`
 	Password           string        `mapstructure:"password"`
@@ -149,6 +151,12 @@ func (c *Config) Prepare(upper interface{}, raws ...interface{}) ([]string, []st
 	// Defaults
 	if c.ProxmoxURLRaw == "" {
 		c.ProxmoxURLRaw = os.Getenv("PROXMOX_URL")
+	}
+	if c.ProxmoxHttpHeaders == "" {
+		c.ProxmoxHttpHeaders = os.Getenv("PROXMOX_HTTP_HEADERS")
+	}
+	if c.ProxmoxProxyServer == "" {
+		c.ProxmoxProxyServer = os.Getenv("PROXMOX_PROXY_SERVER")
 	}
 	if c.Username == "" {
 		c.Username = os.Getenv("PROXMOX_USERNAME")

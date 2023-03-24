@@ -78,6 +78,10 @@ in the image's Cloud-Init settings for provisioning.
 
 - `insecure_skip_tls_verify` (bool) - Skip validating the certificate.
 
+- `proxmox_http_headers` (string) - Set custom http headers e.g. `Key,Value,Key1,Value1`
+
+- `proxmox_proxy_server` (string) - Proxy Server passed to Api client(useful for debugging). Syntax: `http://proxy:port`
+
 - `task_timeout` (duration string | ex: "10m") - The timeout for
   Promox API operations, e.g. clones. Defaults to 1 minute.
 
