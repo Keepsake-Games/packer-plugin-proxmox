@@ -15,11 +15,14 @@ func newProxmoxClient(config Config) (*proxmox.Client, error) {
 		InsecureSkipVerify: config.SkipCertValidation,
 	}
 
+	log.Printf("BEFORE NewClient -- PackerDebug? %t -- proxmox.Debug? %t", config.PackerDebug, *proxmox.Debug)
+
 	client, err := proxmox.NewClient(config.proxmoxURL.String(), nil, config.ProxmoxHttpHeaders, tlsConfig, config.ProxmoxProxyServer, int(config.TaskTimeout.Seconds()))
 	if err != nil {
 		return nil, err
 	}
 
+	log.Printf("AFTER NewClient -- PackerDebug? %t -- proxmox.Debug? %t", config.PackerDebug, *proxmox.Debug)
 	*proxmox.Debug = config.PackerDebug
 
 	if config.Token != "" {
