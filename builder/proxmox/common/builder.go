@@ -15,8 +15,9 @@ import (
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"
 
 	"log"
-	"net/http"
-	_ "net/http/pprof"
+	"os"
+	"runtime"
+	"runtime/pprof"
 )
 
 func NewSharedBuilder(id string, config Config, preSteps []multistep.Step, postSteps []multistep.Step, vmCreator ProxmoxVMCreator) *Builder {
@@ -39,12 +40,17 @@ type Builder struct {
 	vmCreator     ProxmoxVMCreator
 }
 
+func dumpMemory() {
+	log.Print("Starting pprof memory dump")
+	f, _ := os.Create("/tmp/profile.pb.gz")
+	defer f.Close()
+	runtime.GC()
+	pprof.WriteHeapProfile(f)
+}
+
 func (b *Builder) Run(ctx context.Context, ui packersdk.Ui, hook packersdk.Hook, state multistep.StateBag) (packersdk.Artifact, error) {
 	log.Print("Starting builder Run")
-	go func() {
-		log.Print("Starting pprof")
-		http.ListenAndServe(":8080", nil)
-	}()
+	defer dumpMemory()
 
 	var err error
 	b.proxmoxClient, err = newProxmoxClient(b.config)
