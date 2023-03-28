@@ -13,6 +13,10 @@ import (
 	"github.com/hashicorp/packer-plugin-sdk/multistep"
 	"github.com/hashicorp/packer-plugin-sdk/multistep/commonsteps"
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"
+
+	"log"
+	"net/http"
+	_ "net/http/pprof"
 )
 
 func NewSharedBuilder(id string, config Config, preSteps []multistep.Step, postSteps []multistep.Step, vmCreator ProxmoxVMCreator) *Builder {
@@ -36,6 +40,12 @@ type Builder struct {
 }
 
 func (b *Builder) Run(ctx context.Context, ui packersdk.Ui, hook packersdk.Hook, state multistep.StateBag) (packersdk.Artifact, error) {
+	log.Print("Starting builder Run")
+	go func() {
+		log.Print("Starting pprof")
+		http.ListenAndServe(":8080", nil)
+	}()
+
 	var err error
 	b.proxmoxClient, err = newProxmoxClient(b.config)
 	if err != nil {
