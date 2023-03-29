@@ -9,7 +9,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/Keepsake-Games/proxmox-api-go/proxmox"
 	"github.com/hashicorp/packer-plugin-sdk/multistep"
 	"github.com/hashicorp/packer-plugin-sdk/multistep/commonsteps"
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"

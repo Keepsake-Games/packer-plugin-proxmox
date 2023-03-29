@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/Keepsake-Games/proxmox-api-go/proxmox"
 )
 
 func newProxmoxClient(config Config) (*proxmox.Client, error) {

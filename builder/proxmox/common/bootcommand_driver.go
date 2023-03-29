@@ -9,7 +9,7 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/Keepsake-Games/proxmox-api-go/proxmox"
 	"github.com/hashicorp/packer-plugin-sdk/bootcommand"
 )
 

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/Keepsake-Games/proxmox-api-go/proxmox"
 	"github.com/hashicorp/packer-plugin-sdk/common"
 	"github.com/hashicorp/packer-plugin-sdk/multistep"
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"

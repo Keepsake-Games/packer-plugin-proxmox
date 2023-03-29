@@ -11,7 +11,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/Keepsake-Games/proxmox-api-go/proxmox"
 	"github.com/hashicorp/packer-plugin-sdk/bootcommand"
 	"github.com/hashicorp/packer-plugin-sdk/multistep"
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"

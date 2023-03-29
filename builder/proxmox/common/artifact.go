@@ -8,7 +8,7 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/Keepsake-Games/proxmox-api-go/proxmox"
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"
 )
 

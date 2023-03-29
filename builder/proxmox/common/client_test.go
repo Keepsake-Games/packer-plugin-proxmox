@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/Keepsake-Games/proxmox-api-go/proxmox"
 	"github.com/stretchr/testify/require"
 )
 

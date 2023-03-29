@@ -39,6 +39,8 @@ github.com/ChrisTrenkamp/goxpath v0.0.0-20170922090931-c385f95c6022/go.mod h1:nu
 github.com/ChrisTrenkamp/goxpath v0.0.0-20210404020558-97928f7e12b6 h1:w0E0fgc1YafGEh5cROhlROMWXiNoZqApk2PDN0M1+Ns=
 github.com/ChrisTrenkamp/goxpath v0.0.0-20210404020558-97928f7e12b6/go.mod h1:nuWgzSkT5PnyOd+272uUmV0dnAnAn42Mk7PiQC5VzN4=
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
+github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230329075132-5d1476b0bdf0 h1:eRLFb5GnmiZ6K5qFzLYV9QJvBKJOPeGziZY8CuiFcjc=
+github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230329075132-5d1476b0bdf0/go.mod h1:2GCaXjvzYvlVUCNVzTFjHZVPWBiZifKFu20WZZLa+uY=
 github.com/Microsoft/go-winio v0.4.15-0.20190919025122-fc70bd9a86b5/go.mod h1:tTuCMEN+UleMWgg9dVx4Hu52b1bJo+59jBh3ajtinzw=
 github.com/Microsoft/hcsshim v0.8.9/go.mod h1:5692vkUqntj1idxauYlpoINNKeqCiG6Sg38RRsjT5y8=
 github.com/Telmate/proxmox-api-go v0.0.0-20230201114211-205f18a553e4 h1:GJkOa4dhiypVqxy057k5N7TCDx72L2h8H++Mf7gw2to=
