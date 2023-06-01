@@ -22,6 +22,7 @@ type stepUploadAdditionalISO struct {
 
 type uploader interface {
 	Upload(node string, storage string, contentType string, filename string, file io.Reader) error
+	UploadChunked(node string, storage string, contentType string, filename string, file io.Reader, chunkSize int64) error
 	DeleteVolume(vmr *proxmoxapi.VmRef, storageName string, volumeName string) (exitStatus interface{}, err error)
 }
 
@@ -72,7 +73,11 @@ func (s *stepUploadAdditionalISO) Run(ctx context.Context, state multistep.State
 	}
 
 	filename := filepath.Base(isoPath)
-	err = client.Upload(c.Node, s.ISO.ISOStoragePool, "iso", filename, r)
+	if c.ISOUploadChunkSize > 0 {
+		err = client.UploadChunked(c.Node, s.ISO.ISOStoragePool, "iso", filename, r, c.ISOUploadChunkSize)
+	} else {
+		err = client.Upload(c.Node, s.ISO.ISOStoragePool, "iso", filename, r)
+	}
 	if err != nil {
 		state.Put("error", err)
 		ui.Error(err.Error())

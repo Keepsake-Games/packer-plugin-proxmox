@@ -76,6 +76,7 @@ type Config struct {
 	CloudInitStoragePool string `mapstructure:"cloud_init_storage_pool"`
 
 	AdditionalISOFiles []additionalISOsConfig `mapstructure:"additional_iso_files"`
+	ISOUploadChunkSize int64                  `mapstructure:"iso_upload_chunk_size"`
 	VMInterface        string                 `mapstructure:"vm_interface"`
 
 	Ctx interpolate.Context `mapstructure-to-hcl2:",skip"`

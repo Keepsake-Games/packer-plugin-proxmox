@@ -20,6 +20,7 @@ type stepUploadISO struct{}
 
 type uploader interface {
 	Upload(node string, storage string, contentType string, filename string, file io.Reader) error
+	UploadChunked(node string, storage string, contentType string, filename string, file io.Reader, chunkSize int64) error
 }
 
 var _ uploader = &proxmox.Client{}
@@ -52,7 +53,11 @@ func (s *stepUploadISO) Run(ctx context.Context, state multistep.StateBag) multi
 	}
 
 	filename := filepath.Base(c.ISOUrls[0])
-	err = client.Upload(c.Node, c.ISOStoragePool, "iso", filename, r)
+	if c.ISOUploadChunkSize > 0 {
+		err = client.UploadChunked(c.Node, c.ISOStoragePool, "iso", filename, r, c.ISOUploadChunkSize)
+	} else {
+		err = client.Upload(c.Node, c.ISOStoragePool, "iso", filename, r)
+	}
 	if err != nil {
 		state.Put("error", err)
 		ui.Error(err.Error())
