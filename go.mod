@@ -3,7 +3,7 @@ module github.com/hashicorp/packer-plugin-proxmox
 go 1.18
 
 require (
-	github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230329094715-c92b7b512ba9
+	github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230601081543-ac7232047111
 	github.com/hashicorp/go-getter/v2 v2.1.1
 	github.com/hashicorp/hcl/v2 v2.14.1
 	github.com/hashicorp/packer-plugin-sdk v0.3.2
@@ -96,5 +96,3 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/Telmate/proxmox-api-go => github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230531122819-7eaed2f3afad
