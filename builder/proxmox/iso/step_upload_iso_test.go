@@ -19,6 +19,14 @@ type uploaderMock struct {
 	wasCalled bool
 }
 
+func (m *uploaderMock) UploadChunked(node string, storage string, contentType string, filename string, file io.Reader, chunkSize int64) error {
+	m.wasCalled = true
+	if m.fail {
+		return fmt.Errorf("Testing induced failure")
+	}
+	return nil
+}
+
 func (m *uploaderMock) Upload(node string, storage string, contentType string, filename string, file io.Reader) error {
 	m.wasCalled = true
 	if m.fail {
