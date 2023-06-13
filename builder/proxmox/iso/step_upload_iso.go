@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"net/url"
 	"os"
 	"path/filepath"
 
@@ -52,7 +53,14 @@ func (s *stepUploadISO) Run(ctx context.Context, state multistep.StateBag) multi
 		return multistep.ActionHalt
 	}
 
-	filename := filepath.Base(c.ISOUrls[0])
+	u, err := url.Parse(c.ISOUrls[0])
+	if err != nil {
+		state.Put("error", err)
+		ui.Error(err.Error())
+		return multistep.ActionHalt
+	}
+	path, _ := url.QueryUnescape(u.EscapedPath())
+	filename := filepath.Base(path)
 	if c.ISOUploadChunkSize > 0 {
 		err = client.UploadChunked(c.Node, c.ISOStoragePool, "iso", filename, r, c.ISOUploadChunkSize)
 	} else {
