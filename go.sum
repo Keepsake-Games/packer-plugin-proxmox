@@ -21,8 +21,6 @@ github.com/ChrisTrenkamp/goxpath v0.0.0-20170922090931-c385f95c6022/go.mod h1:nu
 github.com/ChrisTrenkamp/goxpath v0.0.0-20210404020558-97928f7e12b6 h1:w0E0fgc1YafGEh5cROhlROMWXiNoZqApk2PDN0M1+Ns=
 github.com/ChrisTrenkamp/goxpath v0.0.0-20210404020558-97928f7e12b6/go.mod h1:nuWgzSkT5PnyOd+272uUmV0dnAnAn42Mk7PiQC5VzN4=
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
-github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230329094715-c92b7b512ba9 h1:2s+rJwdxiV1f1Rkiqcvwgc8oCieeloDBOb5KVO10Cmo=
-github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230329094715-c92b7b512ba9/go.mod h1:2GCaXjvzYvlVUCNVzTFjHZVPWBiZifKFu20WZZLa+uY=
 github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230601081543-ac7232047111 h1:d0RCrj5c5sWXXt9LHwCSXcYNVaQyOebwLgwdUtcy2Io=
 github.com/Keepsake-Games/proxmox-api-go v0.0.0-20230601081543-ac7232047111/go.mod h1:2GCaXjvzYvlVUCNVzTFjHZVPWBiZifKFu20WZZLa+uY=
 github.com/Microsoft/go-winio v0.4.15-0.20190919025122-fc70bd9a86b5/go.mod h1:tTuCMEN+UleMWgg9dVx4Hu52b1bJo+59jBh3ajtinzw=
