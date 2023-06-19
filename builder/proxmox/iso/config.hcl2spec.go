@@ -92,9 +92,11 @@ type FlatConfig struct {
 	VMID                      *int                               `mapstructure:"vm_id" cty:"vm_id" hcl:"vm_id"`
 	Boot                      *string                            `mapstructure:"boot" cty:"boot" hcl:"boot"`
 	Memory                    *int                               `mapstructure:"memory" cty:"memory" hcl:"memory"`
+	BalloonMinimum            *int                               `mapstructure:"ballooning_minimum" cty:"ballooning_minimum" hcl:"ballooning_minimum"`
 	Cores                     *int                               `mapstructure:"cores" cty:"cores" hcl:"cores"`
 	CPUType                   *string                            `mapstructure:"cpu_type" cty:"cpu_type" hcl:"cpu_type"`
 	Sockets                   *int                               `mapstructure:"sockets" cty:"sockets" hcl:"sockets"`
+	Numa                      *bool                              `mapstructure:"numa" cty:"numa" hcl:"numa"`
 	OS                        *string                            `mapstructure:"os" cty:"os" hcl:"os"`
 	BIOS                      *string                            `mapstructure:"bios" cty:"bios" hcl:"bios"`
 	EFIConfig                 *proxmox.FlatefiConfig             `mapstructure:"efi_config" cty:"efi_config" hcl:"efi_config"`
@@ -219,9 +221,11 @@ func (*FlatConfig) HCL2Spec() map[string]hcldec.Spec {
 		"vm_id":                        &hcldec.AttrSpec{Name: "vm_id", Type: cty.Number, Required: false},
 		"boot":                         &hcldec.AttrSpec{Name: "boot", Type: cty.String, Required: false},
 		"memory":                       &hcldec.AttrSpec{Name: "memory", Type: cty.Number, Required: false},
+		"ballooning_minimum":           &hcldec.AttrSpec{Name: "ballooning_minimum", Type: cty.Number, Required: false},
 		"cores":                        &hcldec.AttrSpec{Name: "cores", Type: cty.Number, Required: false},
 		"cpu_type":                     &hcldec.AttrSpec{Name: "cpu_type", Type: cty.String, Required: false},
 		"sockets":                      &hcldec.AttrSpec{Name: "sockets", Type: cty.Number, Required: false},
+		"numa":                         &hcldec.AttrSpec{Name: "numa", Type: cty.Bool, Required: false},
 		"os":                           &hcldec.AttrSpec{Name: "os", Type: cty.String, Required: false},
 		"bios":                         &hcldec.AttrSpec{Name: "bios", Type: cty.String, Required: false},
 		"efi_config":                   &hcldec.BlockSpec{TypeName: "efi_config", Nested: hcldec.ObjectSpec((*proxmox.FlatefiConfig)(nil).HCL2Spec())},

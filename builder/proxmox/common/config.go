@@ -52,9 +52,11 @@ type Config struct {
 
 	Boot           string         `mapstructure:"boot"`
 	Memory         int            `mapstructure:"memory"`
+	BalloonMinimum int            `mapstructure:"ballooning_minimum"`
 	Cores          int            `mapstructure:"cores"`
 	CPUType        string         `mapstructure:"cpu_type"`
 	Sockets        int            `mapstructure:"sockets"`
+	Numa           bool           `mapstructure:"numa"`
 	OS             string         `mapstructure:"os"`
 	BIOS           string         `mapstructure:"bios"`
 	EFIConfig      efiConfig      `mapstructure:"efi_config"`
@@ -142,6 +144,10 @@ func (c *Config) Prepare(upper interface{}, raws ...interface{}) ([]string, []st
 	var errs *packersdk.MultiError
 	var warnings []string
 
+	if c.Ctx.BuildType == "proxmox" {
+		warnings = append(warnings, "proxmox is deprecated, please use proxmox-iso instead")
+	}
+
 	// Default qemu_agent to true
 	if c.Agent != config.TriFalse {
 		c.Agent = config.TriTrue
@@ -195,6 +201,9 @@ func (c *Config) Prepare(upper interface{}, raws ...interface{}) ([]string, []st
 	if c.Memory < 16 {
 		log.Printf("Memory %d is too small, using default: 512", c.Memory)
 		c.Memory = 512
+	}
+	if c.Memory < c.BalloonMinimum {
+		errs = packersdk.MultiErrorAppend(errs, fmt.Errorf("ballooning_minimum (%d) must be lower than memory (%d)", c.BalloonMinimum, c.Memory))
 	}
 	if c.Cores < 1 {
 		log.Printf("Number of cores %d is too small, using default: 1", c.Cores)

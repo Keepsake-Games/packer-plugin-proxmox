@@ -95,8 +95,14 @@ in the image's Cloud-Init settings for provisioning.
   and are limited to the range 100-999999999.
   If not given, the next free ID on the cluster will be used.
 
-- `memory` (int) - How much memory, in megabytes, to give the virtual
-  machine. Defaults to `512`.
+- `memory` (int) - How much memory (in megabytes) to give the virtual
+  machine. If `ballooning_minimum` is also set, `memory` defines the maximum amount
+  of memory the VM will be able to use.
+  Defaults to `512`.
+
+- `ballooning_minimum` (int) - Setting this option enables KVM memory ballooning and
+  defines the minimum amount of memory (in megabytes) the VM will have.
+  Defaults to `0` (memory ballooning disabled).
 
 - `cores` (int) - How many CPU cores to give the virtual machine. Defaults
   to `1`.
@@ -107,6 +113,9 @@ in the image's Cloud-Init settings for provisioning.
 - `cpu_type` (string) - The CPU type to emulate. See the Proxmox API
   documentation for the complete list of accepted values. For best
   performance, set this to `host`. Defaults to `kvm64`.
+
+- `numa` (bool) - If true, support for non-uniform memory access (NUMA)
+  is enabled. Defaults to `false`.
 
 - `os` (string) - The operating system. Can be `wxp`, `w2k`, `w2k3`, `w2k8`,
   `wvista`, `win7`, `win8`, `win10`, `l24` (Linux 2.4), `l26` (Linux 2.6+),
@@ -255,7 +264,6 @@ or responding to pattern `/dev/.+`. Example:
   If not given, the same setting as on the host is used.
 
 - `ipconfig` (array of objects) - Set IP address and gateway via Cloud-Init.
-  If no options are given, DHCP will be used.
   If you have configured more than one network interface, make sure to match the order of
   `network_adapters` and `ipconfig`. 
 
@@ -272,13 +280,13 @@ or responding to pattern `/dev/.+`. Example:
   ]
   ```
 
-  - `ip` (string) IPv4 address (CIDR notation).
+  - `ip` (string) - Either an IPv4 address (CIDR notation) or `dhcp`.
 
-  - `gateway` (string) IPv4 gateway.
+  - `gateway` (string) - IPv4 gateway.
 
-  - `ip6` (string) IPv6 address (CIDR notation).
+  - `ip6` (string) - Can be an IPv6 address (CIDR notation), `auto` (enables SLAAC), or `dhcp`.
 
-  - `gateway6` (string) IPv6 gateway.
+  - `gateway6` (string) - IPv6 gateway.
 
 - `additional_iso_files` (array of objects) - Additional ISO files attached to the virtual machine.
   Example:

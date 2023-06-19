@@ -119,6 +119,7 @@ func (s *stepStartVM) Run(ctx context.Context, state multistep.StateBag) multist
 		Memory:       c.Memory,
 		QemuCores:    c.Cores,
 		QemuSockets:  c.Sockets,
+		QemuNuma:     &c.Numa,
 		QemuOs:       c.OS,
 		Bios:         c.BIOS,
 		EFIDisk:      generateProxmoxEfi(c.EFIConfig),
@@ -129,6 +130,13 @@ func (s *stepStartVM) Run(ctx context.Context, state multistep.StateBag) multist
 		QemuSerials:  generateProxmoxSerials(c.Serials),
 		Scsihw:       c.SCSIController,
 		Onboot:       &c.Onboot,
+	}
+
+	// 0 disables the ballooning device, which is useful for all VMs
+	// and should be kept enabled by default.
+	// See https://github.com/hashicorp/packer-plugin-proxmox/issues/127#issuecomment-1464030102
+	if c.BalloonMinimum > 0 {
+		config.Balloon = c.BalloonMinimum
 	}
 
 	if c.PackerForce {
